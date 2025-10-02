@@ -4,3 +4,5 @@ export const CDN_URL =
 export const LOGO_URL =
        "https://img.freepik.com/premium-vector/burger-logo-design-vector-fast-food-restaurant-cafe-symbol_18099-2286.jpg";
 
+export const MENU_API =
+      "https://corsproxy.io/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=30.3224016&lng=78.0295273&restaurantId="    
