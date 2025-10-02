@@ -7,7 +7,6 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter ,RouterProvider ,Outlet} from "react-router-dom";
-import RestaurantMenu from "./components/RestaurantMenu";
 import {Provider} from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";

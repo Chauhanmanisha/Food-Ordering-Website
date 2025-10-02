@@ -10,12 +10,12 @@ const RestaurantCard = (props) =>{
         avgRating,
         costForTwo,
         sla,
-    } = resData?.info;
+    } = resData?.info || {};
 
     return(
-        <div className="m-6 p-4 w-[200px] h-[400px] bg-white shadow-lg rounded-lg hover:bg-gray-200">
+        <div className="m-2 p-4 w-[200px] h-[400px] bg-white shadow-lg rounded-lg transition-transform  ease-in-out hover:scale-95 ">
             <img
-              className="rounded-lg "
+              className="rounded-lg w-[170px] h-[170px] "
               alt="res-logo"
               src={CDN_URL + resData.info.cloudinaryImageId
               }

@@ -8,8 +8,10 @@ const Body = () =>{
 
     // locacl state varibale
     const [listofRestaurants , setListofRestaurants] = useState([]);
-    const [filteredRestaurant , setFilteredRestaurant] = useState([]);
+    const [filteredRestaurant , setFilteredRestaurant] = useState(listofRestaurants);
     const [searchText , setSearchText] = useState("");
+
+    const [isFiltered ,  setIsFiltered] = useState(false);
 
     console.log("body rendered" , listofRestaurants);
 
@@ -27,6 +29,16 @@ const Body = () =>{
         setListofRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
+    
+    const filter = ()=>{
+        if(!isFiltered){
+          setFilteredRestaurant(listofRestaurants.filter((el) => el.info.avgRating>4.4))
+            setIsFiltered(true);
+        }else{
+          setFilteredRestaurant(listofRestaurants)
+            setIsFiltered(false);
+        }
+    }
 
     const onlineStatus = useOnlineStatus();
 
@@ -39,7 +51,7 @@ const Body = () =>{
 
     return listofRestaurants.length === 0 ? (< Shimmer />) : (
 
-       <div className="body">
+       <div className="body bg-gray-300">
             <div className="filter flex">
 
                 <div className="search m-4 p-4">
@@ -54,7 +66,7 @@ const Body = () =>{
                   />
 
                     <button 
-                       className="px-3 py-1 bg-green-100 m-4 rounded-lg"
+                       className="px-3 py-1 bg-white shadow-lg m-4 rounded-lg"
                        onClick={() => {
                             // filter restaurant card and change UI
                              //searchTest
@@ -73,17 +85,10 @@ const Body = () =>{
                     
                 </div>
 
-                <div className="search m-4 p-4 flex items-center">
-                 <button className="px-3 py-2 bg-gray-100 rounded-lg" 
-                   onClick={() => {
-                       const filteredList = listofRestaurants.filter (
-                          (res) => res.info.avgRating > 4.5
-                        );
-                       setListofRestaurants(filteredList);
-                    }}
-                 >
-                    Top Rated Restaurants
-                 </button >
+                <div className="search p-4 flex items-center">
+                  <button className="filter-btn mx-2 rounded-xl w-20 bg-white shadow-lg px-3 py-1 " onClick={filter} >
+                    {!isFiltered ? "Top ⭐" : "see all" }
+                  </button>
                 </div>
 
             </div>
